@@ -23,6 +23,8 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+.exercism/
+build/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -289,3 +291,9 @@ __pycache__/
 
 *.cache
 .editorconfig
+
+
+#Kotlin
+build/
+.gradle/
+gradle/
