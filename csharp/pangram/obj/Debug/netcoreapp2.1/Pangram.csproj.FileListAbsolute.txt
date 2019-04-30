@@ -1,0 +1,14 @@
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\Pangram.deps.json
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\Pangram.runtimeconfig.json
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\Pangram.runtimeconfig.dev.json
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\Pangram.dll
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\bin\Debug\netcoreapp2.1\Pangram.pdb
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.csprojAssemblyReference.cache
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.csproj.CoreCompileInputs.cache
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.AssemblyInfoInputs.cache
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.AssemblyInfo.cs
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.dll
+C:\Users\CHUK.HUCK\Exercism\csharp\pangram\obj\Debug\netcoreapp2.1\Pangram.pdb
