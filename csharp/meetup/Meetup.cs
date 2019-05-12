@@ -12,12 +12,22 @@ public enum Schedule
 
 public class Meetup
 {
+    private int _month;
+    private int _year;
+
+
     public Meetup(int month, int year)
     {
+        _month = month;
+        _year = year;
     }
 
     public DateTime Day(DayOfWeek dayOfWeek, Schedule schedule)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        DateTime calculatedDate = new DateTime(_year, _month, 1);
+
+        calculatedDate.
+
+        return calculatedDate;
     }
 }
