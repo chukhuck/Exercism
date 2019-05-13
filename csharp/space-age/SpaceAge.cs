@@ -2,47 +2,60 @@ using System;
 
 public class SpaceAge
 {
+    private const int EARTH_ORBITAL_PERIOD_IN_SECONDS = 31557600;
+    private const double MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR = 0.2408467;
+    private const double VENUS_ORBITAL_PERIOD_IN_EARTH_YEAR = 0.61519726;
+    private const double MARS_ORBITAL_PERIOD_IN_EARTH_YEAR = 1.8808158;
+    private const double JUPITER_ORBITAL_PERIOD_IN_EARTH_YEAR = 11.862615;
+    private const double SATURN_ORBITAL_PERIOD_IN_EARTH_YEAR = 29.447498;
+    private const double URANUS_ORBITAL_PERIOD_IN_EARTH_YEAR = 84.016846;
+    private const double NEPTUNE_ORBITAL_PERIOD_IN_EARTH_YEAR = 164.79132;
+
+
+    private int _ageInSeconds;
+
     public SpaceAge(int seconds)
     {
+        _ageInSeconds = seconds;
     }
 
     public double OnEarth()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return _ageInSeconds / EARTH_ORBITAL_PERIOD_IN_SECONDS ;
     }
 
     public double OnMercury()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnVenus()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * VENUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnMars()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnJupiter()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * JUPITER_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnSaturn()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * SATURN_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnUranus()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * URANUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnNeptune()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return OnEarth() * NEPTUNE_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 }
