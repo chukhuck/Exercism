@@ -8,15 +8,12 @@ public static class PrimeFactors
         List<int> factors = new List<int>();
 
         long i = 2;
-        long limit = number/2 + 1;
-
 
         while (number != 1)
         {
             if (number%i==0)
             {
                 number /= i;
-                limit = number/2 + 1;
                 factors.Add((int)i);
             }
             else
