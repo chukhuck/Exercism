@@ -21,41 +21,41 @@ public class SpaceAge
 
     public double OnEarth()
     {
-        return _ageInSeconds / EARTH_ORBITAL_PERIOD_IN_SECONDS ;
+        return ((double)_ageInSeconds) / EARTH_ORBITAL_PERIOD_IN_SECONDS ;
     }
 
     public double OnMercury()
     {
-        return OnEarth() * MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() /  MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnVenus()
     {
-        return OnEarth() * VENUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / VENUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnMars()
     {
-        return OnEarth() * MERCURY_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / MARS_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnJupiter()
     {
-        return OnEarth() * JUPITER_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / JUPITER_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnSaturn()
     {
-        return OnEarth() * SATURN_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / SATURN_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnUranus()
     {
-        return OnEarth() * URANUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / URANUS_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 
     public double OnNeptune()
     {
-        return OnEarth() * NEPTUNE_ORBITAL_PERIOD_IN_EARTH_YEAR;
+        return OnEarth() / NEPTUNE_ORBITAL_PERIOD_IN_EARTH_YEAR;
     }
 }
