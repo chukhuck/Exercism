@@ -7,20 +7,23 @@ public static class PrimeFactors
     {
         List<int> factors = new List<int>();
 
-        long i = 2;
-
         while (number != 1)
         {
-            if (number%i==0)
-            {
-                number /= i;
-                factors.Add((int)i);
-            }
-            else
-                i++;
+            int minFactor = GetMinFactor(number);
+            factors.Add(minFactor);
+            number /= minFactor;
         }
 
-
         return factors.ToArray();
+    }
+
+    private static int GetMinFactor(long number)
+    {
+        int limit = (int)Math.Sqrt(number) + 1;
+        for (int i = 2; i < limit; i++)
+            if (number%i==0)
+                return i;
+
+        return (int)number;
     }
 }
