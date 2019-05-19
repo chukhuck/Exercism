@@ -29,9 +29,9 @@ public class AllYourBaseTest
     public void Single_decimal_to_binary()
     {
         var inputBase = 10;
-        var digits = new[] { 5 };
+        var digits = new[] { 6 };
         var outputBase = 2;
-        var expected = new[] { 1, 0, 1 };
+        var expected = new[] { 1, 1, 0 };
         Assert.Equal(expected, AllYourBase.Rebase(inputBase, digits, outputBase));
     }
 
