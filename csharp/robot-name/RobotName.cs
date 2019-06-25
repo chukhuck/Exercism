@@ -8,34 +8,40 @@ public class Robot
 
     public const int MAX_NAME_COUNT = 26 * 26 * 10 * 10 *10;
 
-    Random generator = new Random((int)DateTime.Now.Ticks * 3);
+    private static Random generator = new Random();
 
-    public readonly char[] ALPHABET = new char[]
+    private readonly char[] ALPHABET = new char[]
     {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 
         'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 
         'U', 'V', 'W', 'X', 'Y', 'Z'       
     };
 
-    private int _id = -1;
+    public int? ID {get; private set;}
 
     public string Name
     {
         get
         {
-            if (_id == -1)
-            {
-                do
-                {
-                    _id = generator.Next(MAX_NAME_COUNT);
-                } while (Previous.Contains(_id));
-               Previous.Add(_id);
-            }
-            return TranslateIdToName(_id);
+            return TranslateIdToName(ID ??  GenerateId() );
         }
     }
 
-    public void Reset() => _id = -1;
+    private int GenerateId()
+    {
+        int tempID;
+        do
+        {
+            tempID = generator.Next(MAX_NAME_COUNT);
+        } while (Previous.Contains(tempID));
+        
+        ID = tempID;
+        Previous.Add(tempID);
+
+        return tempID;
+    }
+
+    public void Reset() => ID = null;
 
     private string TranslateIdToName(int id)
     {
