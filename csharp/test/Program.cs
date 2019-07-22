@@ -8,72 +8,31 @@ namespace test
     {
         static void Main(string[] args)
         {
-            //,"enlists", "google", "banana"
-            var candidates = new[] {  "inlets" };
-            var sut = new Anagram("listen");
-
-            Console.WriteLine(sut.FindAnagrams(candidates));
+            var array = new[] { 1, 3, 4, 6, 8, 9, 11};
+            var value = 11;
+            Console.WriteLine( Find(array, value));
         }
-    }
 
-        public struct LetterDistributionItem
-    {
-        public char Letter;
-        public int Count;
-    }
-
-    public static class IListLetterDistributionExtension
-    {
-        public static bool EqualsTo(this IList<LetterDistributionItem> distrib, IList<LetterDistributionItem> otherDistrib) 
+        public static int Find(int[] input, int value)
         {
-            if(distrib.Count != otherDistrib.Count)
-                return false;
-    
-            for (int i = 0; i < distrib.Count; i++)
-                {if (distrib[i].Letter != otherDistrib[i].Letter || distrib[i].Count != otherDistrib[i].Count)
-                    Console.WriteLine($"{distrib[i].Letter} - {otherDistrib[i].Letter}, {distrib[i].Count} - {otherDistrib[i].Count}");
-                    return false;
-                }
-    
-            return true;
+            int begin = 0;
+            int end = input.Length - 1;
+            int pointer = -1;
+            int middle;
+
+            while (begin <= end)
+            {
+                middle = (int)Math.Ceiling((double)(end + begin) / 2);
+
+                if (value == input[middle])
+                    { pointer = middle; break; }
+                else if (value > input[middle])
+                    begin = middle + 1;
+                else
+                    end = middle - 1;
+            }
+
+            return pointer;
         }
     }
-
-
-
-public class Anagram
-{
-    private string baseWord;
-    private IList<LetterDistributionItem> etalonLetterDistribution;
-    
-    public Anagram(string _baseWord)
-    {
-        baseWord = _baseWord.ToLower();
-        etalonLetterDistribution = GetLetterDistribution(baseWord);
-
-        foreach (var item in etalonLetterDistribution)
-        {
-            Console.WriteLine($"{item.Letter} - {item.Count}");
-        }
-    }
-
-    private IList<LetterDistributionItem> GetLetterDistribution(string word)
-    {
-        return (from c in word
-                group c by c into letterGroup
-                orderby letterGroup.Key
-                select new LetterDistributionItem { 
-                    Letter = letterGroup.Key, 
-                    Count = letterGroup.Count() }).ToList();
-    }
-
-    public string[] FindAnagrams(string[] potentialMatches)
-    {
-        return potentialMatches
-                        .Where(match => match.ToLower() != baseWord &&
-                                        match.Count() == baseWord.Count() &&
-                                        etalonLetterDistribution.EqualsTo(GetLetterDistribution(match.ToLower())))
-                        .ToArray();
-    }
-}
 }
