@@ -1,67 +1,43 @@
 using System;
 
-public class Clock
+public struct Clock
 {
-    private int _hours;
-
-    private int _minutes;
-
     public Clock(int hours, int minutes)
     {
-        _hours = (hours + minutes/60) % 24;
-        _minutes = minutes % 60;
+        Hours = (hours + minutes/60) % 24;
+        Minutes = minutes % 60;
 
-        _hours = _minutes < 0 ? _hours - 1 : _hours;
-        _hours = _hours < 0 ? _hours + 24 : _hours;
+        Hours = Minutes < 0 ? Hours - 1 : Hours;
+        Hours = Hours < 0 ? Hours + 24 : Hours;
         
 
-        _minutes = _minutes < 0 ? _minutes + 60 : _minutes;
+        Minutes = Minutes < 0 ? Minutes + 60 : Minutes;
     }
 
-    public int Hours
-    {
-        get
-        {
-            return _hours;
-        }
-    }
+    public int Hours {get; private set;}
 
-    public int Minutes
-    {
-        get
-        {
-            return _minutes;
-        }
-    }
+    public int Minutes {get; private set;}
 
-    public Clock Add(int minutesToAdd)
-    {
-        return new Clock(_hours + minutesToAdd / 60, _minutes + minutesToAdd % 60);
-    }
 
-    public Clock Subtract(int minutesToSubtract)
-    {
-        return new Clock(_hours - minutesToSubtract / 60, _minutes - minutesToSubtract % 60);    }
+    public Clock Add(int minutesToAdd) => new Clock(Hours + minutesToAdd / 60, Minutes + minutesToAdd % 60);
 
-    public override string ToString()
-    {
-        return $"{_hours:00}:{_minutes:00}";
-    }
+    public Clock Subtract(int minutesToSubtract) => new Clock(Hours - minutesToSubtract / 60, Minutes - minutesToSubtract % 60);
 
-    public override bool Equals(Object obj)
-   {
-      if ((obj == null) || ! this.GetType().Equals(obj.GetType())) 
-      {
-         return false;
-      }
-      else { 
-         Clock p = (Clock) obj; 
-         return (_hours == p._hours) && (_minutes == p._minutes);
-      }   
-   }
 
-   public override int GetHashCode()
-   {
-      return (_hours << 5) ^ _minutes;
-   }
+    public override string ToString() => $"{Hours:00}:{Minutes:00}";
+
+
+   //public override bool Equals(Object obj)
+   //{
+   //    if ((obj == null) || ! this.GetType().Equals(obj.GetType())) 
+   //    {
+   //       return false;
+   //    }
+   //    else { 
+   //       Clock p = (Clock) obj; 
+   //       return (Hours == p.Hours) && (Minutes == p.Minutes);
+   //    }   
+   //}
+  
+   //ublic override int GetHashCode() => (Hours << 5) ^ Minutes;
 }
