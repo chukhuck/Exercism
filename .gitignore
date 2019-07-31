@@ -297,3 +297,4 @@ __pycache__/
 build/
 .gradle/
 gradle/
+.ionide/symbolCache.db
