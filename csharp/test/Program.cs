@@ -8,31 +8,38 @@ namespace test
     {
         static void Main(string[] args)
         {
-            var array = new[] { 1, 3, 4, 6, 8, 9, 11};
+            char[] array = new char[] { };
             var value = 11;
-            Console.WriteLine( Find(array, value));
+            Console.WriteLine( Response("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"));
+            System.Console.WriteLine(array.Any(char.IsUpper));
+            System.Console.WriteLine("".Where(char.IsLetter).Any(char.IsLower));
         }
 
-        public static int Find(int[] input, int value)
-        {
-            int begin = 0;
-            int end = input.Length - 1;
-            int pointer = -1;
-            int middle;
+        public static string Response(string statement)
+    {
+        string trimmedStatement = statement.Trim();
 
-            while (begin <= end)
-            {
-                middle = (int)Math.Ceiling((double)(end + begin) / 2);
+        bool isScream = !trimmedStatement.Where(char.IsLetter).All(char.IsUpper);
 
-                if (value == input[middle])
-                    { pointer = middle; break; }
-                else if (value > input[middle])
-                    begin = middle + 1;
-                else
-                    end = middle - 1;
-            }
+        bool isSilent = !trimmedStatement.Any(char.IsLetterOrDigit);
 
-            return pointer;
-        }
+        bool isQuestion = trimmedStatement.EndsWith('?');
+
+        return AnswerOn(isScream, isQuestion, isSilent);
+    }
+
+    private static string AnswerOn(bool isNoise, bool isQuestion, bool isSilent)
+    {
+        if (isNoise && isQuestion)
+            return "Calm down, I know what I'm doing!";
+        else if (isNoise)
+            return "Whoa, chill out!";
+        else if (isQuestion)
+            return "Sure.";
+        else if (isSilent)
+            return "Fine. Be that way!";
+        else
+            return "Whatever.";
+    }
     }
 }
