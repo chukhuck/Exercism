@@ -12,3 +12,17 @@ C:\Users\CHUK.HUCK\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorl
 C:\Users\CHUK.HUCK\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfo.cs
 C:\Users\CHUK.HUCK\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.dll
 C:\Users\CHUK.HUCK\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.pdb
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.deps.json
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.runtimeconfig.json
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.runtimeconfig.dev.json
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.dll
+D:\Exercism\Exercism\csharp\hello-world\bin\Debug\netcoreapp2.1\HelloWorld.pdb
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.csprojAssemblyReference.cache
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.csproj.CoreCompileInputs.cache
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfoInputs.cache
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfo.cs
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.dll
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.pdb
