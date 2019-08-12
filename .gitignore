@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#bins
+*.cache
+
 # User-specific files
 *.suo
 *.user
@@ -23,6 +26,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+[Oo]bj/
 #.exercism/
 build/
 
@@ -299,3 +303,4 @@ build/
 gradle/
 .ionide/symbolCache.db
 .ionide/symbolCache.db
+csharp/hello-world/obj/Debug/netcoreapp2.1/HelloWorld.assets.cache
