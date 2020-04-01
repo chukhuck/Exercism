@@ -25,7 +25,7 @@ public static class SecretHandshake
             commandValue -= MaxCommandValue;
         }
 
-        IEnumerable<string> commands = GetCommands(commandValue);
+        IEnumerable<string> commands = GetCommands3(commandValue);
 
         return needToRevertCommands ? commands.Reverse().ToArray() : commands.ToArray();
     }
@@ -52,6 +52,25 @@ public static class SecretHandshake
                  .Reverse()
                  .Select((c, idx) => c == '1' ? encodeTable[idx] : "")
                  .Where(word => word != "");
+    }
+
+    private static IEnumerable<string> GetCommands3(int commandValue)
+    {
+        List<string> events = new List<string>();
+
+        for (int i = 0; i < encodeTable.Length - 1; i++)
+        {
+            if((commandValue & (1 << i)) != 0)
+                events.Add(encodeTable[i]);
+        }
+
+        return events;
+    }
+
+    //Counting starts from zero. it is not included in the execution of the solution
+    private static int SetCommand(this int number, int numberOfCommand)
+    {
+        return number | (1 << numberOfCommand);
     }
 
     private static IEnumerable<int> ToBinary(this int number)
