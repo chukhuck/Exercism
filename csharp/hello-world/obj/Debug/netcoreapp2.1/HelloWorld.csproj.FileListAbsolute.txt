@@ -26,3 +26,4 @@ D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.Assem
 D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.AssemblyInfo.cs
 D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.dll
 D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.pdb
+D:\Exercism\Exercism\csharp\hello-world\obj\Debug\netcoreapp2.1\HelloWorld.genruntimeconfig.cache
