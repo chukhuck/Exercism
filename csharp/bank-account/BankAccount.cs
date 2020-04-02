@@ -2,26 +2,28 @@
 
 public class BankAccount
 {
+    bool isOpened;
+    decimal balance;
     public void Open()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        isOpened = true;
     }
 
     public void Close()
     {
-        throw new NotImplementedException("You need to implement this function.");
+        isOpened = false;
     }
 
-    public decimal Balance
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this property.");
-        }
-    }
+    public decimal Balance  => isOpened ? balance : throw new InvalidOperationException("Account is closed.");
 
     public void UpdateBalance(decimal change)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        if (!isOpened)
+            throw new InvalidOperationException("Account is closed.");
+
+        lock (this)
+        {
+           balance += change;       
+        }
     }
 }
