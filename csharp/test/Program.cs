@@ -10,7 +10,7 @@ namespace test
         {
             string input = "a";
            
-            Console.WriteLine( HandleErrorByReturningNullableType(input));
+            Console.WriteLine( -1%3);
 
 
         }
