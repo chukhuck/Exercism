@@ -2,6 +2,7 @@
 
 public class BankAccount
 {
+    object balancer = new object();
     bool isOpened;
     decimal balance;
     public void Open()
@@ -21,7 +22,7 @@ public class BankAccount
         if (!isOpened)
             throw new InvalidOperationException("Account is closed.");
 
-        lock (this)
+        lock (balancer)
         {
            balance += change;       
         }
