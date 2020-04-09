@@ -1,34 +1,84 @@
 ﻿using System;
+using System.Linq;
 
 public class Matrix
 {
+    int[][] items;
+    int rows;
+    int columns;
+
+    MatrixParser parser = new MatrixParser();
+
     public Matrix(string input)
     {
+        items = parser.Parse(input);
+        rows = items.Length;
+        columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
     }
 
-    public int Rows
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public int Rows => rows;
 
-    public int Cols
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+
+    public int Cols => columns;
 
     public int[] Row(int row)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return items[row - 1];
     }
 
     public int[] Column(int col)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        int[] column = new int[rows];
+
+        for (int i = 0; i < rows; i++)
+            column[i] = items[i][col - 1];
+
+        return column;
+    }
+}
+
+internal class MatrixParser
+{
+    readonly static char rowSeparator = '\n';
+
+    readonly static char columnSeparator = ' ';
+
+    internal int[][] Parse(string input)
+    {
+        int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
+                                    .Select(i => int.Parse(i))
+                                    .ToArray())
+                    .ToArray();
+
+        int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
+        
+        if(!items.All(r => r.Length == columns))
+            throw new FormatException("It is not a matrix.");
+        
+        return items;
+    }
+
+        internal int[] Parse1(string input)
+    {
+        int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
+                                    .Select(i => int.Parse(i))
+                                    .ToArray())
+                    .ToArray();
+
+        int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
+        int rows = items.Length;
+
+        
+        if(!items.All(r => r.Length == columns))
+            throw new FormatException("It is not a matrix.");
+
+        int[] data = new int[columns * rows];
+
+        for (int i = 0; i < items.Length; i++)
+            items[i].CopyTo(data, i * columns);
+        
+        return data;
     }
 }
