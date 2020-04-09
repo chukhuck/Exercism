@@ -8,65 +8,92 @@ namespace test
     {
         static void Main(string[] args)
         {
-            var plaintext = "If man was meant to stay on the ground, god would have given us roots.";
-
-            Console.WriteLine(Ciphertext(plaintext));
-
-
+        var sut = new Matrix("1 2 3\n4 5 6\n7 8 9\n8 7 6");
+            Console.WriteLine(sut.Column(3));
         }
 
-        public static string NormalizedPlaintext(string plaintext)
+
+    }
+
+    public class Matrix
+    {
+        int[][] items;
+        int rows;
+        int columns;
+
+        MatrixParser parser = new MatrixParser();
+
+        public Matrix(string input)
         {
-            return string.Concat(plaintext
-                                    .ToLower()
-                                    .Where(char.IsLetterOrDigit));
+            items = parser.Parse(input);
+            rows = items.Length;
+            columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
         }
 
-        public static IEnumerable<string> PlaintextSegments(string plaintext)
-        {
-            (int column, int row) = CalculateRowsAndColumns(plaintext);
+        public int Rows => rows;
 
-            for (int i = 0; i < column; i++)
-            {
-                yield return plaintext.Substring(i * row, row);
-            }
+
+        public int Cols => columns;
+
+        public int[] Row(int row)
+        {
+            return items[row - 1];
         }
 
-        private static (int columns, int rows) CalculateRowsAndColumns(string plaintext)
+        public int[] Column(int col)
         {
-            int column = (int)Math.Ceiling(Math.Sqrt(plaintext.Length));
+            int[] column = new int[rows];
 
-            return (column, (int)Math.Round((double)plaintext.Length / column));
+            for (int i = 0; i < rows; i++)
+                column[i] = items[i][col - 1];
+
+            return column;
+        }
+    }
+
+    internal class MatrixParser
+    {
+        readonly static char rowSeparator = '\n';
+
+        readonly static char columnSeparator = ' ';
+
+        internal int[][] Parse(string input)
+        {
+            int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
+                                        .Select(i => int.Parse(i))
+                                        .ToArray())
+                        .ToArray();
+
+            int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
+
+            if (!items.All(r => r.Length == columns))
+                throw new FormatException("It is not a matrix.");
+
+            return items;
         }
 
-        public static string Encoded(string plaintext)
+        internal int[] Parse1(string input)
         {
-            (int columnCount, int rowCount) = CalculateRowsAndColumns(plaintext);
-            int paddingLenght = columnCount * rowCount - plaintext.Length;
+            int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
+                                        .Select(i => int.Parse(i))
+                                        .ToArray())
+                        .ToArray();
 
-            plaintext = plaintext.PadRight(plaintext.Length + paddingLenght);
+            int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
+            int rows = items.Length;
 
-            char[] cipheredText = new char[plaintext.Length];
 
-            for (int i = 0; i < rowCount; i++)
-            {
-                for (int j = 0; j < columnCount; j++)
-                {
-                    cipheredText[j * rowCount + i] = plaintext[i * columnCount + j];
-                }
-            }
+            if (!items.All(r => r.Length == columns))
+                throw new FormatException("It is not a matrix.");
 
-            return new String(cipheredText);
-        }
+            int[] data = new int[columns * rows];
 
-        public static string Ciphertext(string plaintext)
-        {
-            string normalizedText = NormalizedPlaintext(plaintext);
+            for (int i = 0; i < items.Length; i++)
+                items[i].CopyTo(data, i * columns);
 
-            if (string.IsNullOrEmpty(normalizedText))
-                return string.Empty;
-
-            return string.Join(' ', PlaintextSegments(Encoded(normalizedText)));
+            return data;
         }
     }
 
