@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Running;
 
 namespace perfomance
 {
@@ -11,8 +12,12 @@ namespace perfomance
     {
         static void Main(string[] args)
         {
+            BenchmarkRunner.Run<MyBenchmark>();
         }
+    }
 
+    public class MyBenchmark
+    {
         [Benchmark]
         public int CountingUpTo100()
         {
