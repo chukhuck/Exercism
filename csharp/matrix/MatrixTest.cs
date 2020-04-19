@@ -60,3 +60,4 @@ public class MatrixTest
         Assert.Equal(new[] { 1903, 3, 4 }, sut.Column(2));
     }
 }
+
