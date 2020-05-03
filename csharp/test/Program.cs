@@ -8,93 +8,83 @@ namespace test
     {
         static void Main(string[] args)
         {
-        var sut = new Matrix("1 2 3\n4 5 6\n7 8 9\n8 7 6");
-            Console.WriteLine(sut.Column(3));
+            var matrix = new[,]
+        {
+             { 9, 8, 7 },
+             { 5, 3, 2 },
+             { 6, 6, 7 }
+        };
+            Calculate(matrix).ToList().ForEach(i => Console.WriteLine(i));
         }
 
 
-    }
-
-    public class Matrix
+        public static IEnumerable<(int, int)> Calculate(int[,] matrix)
     {
-        int[][] items;
-        int rows;
-        int columns;
-
-        MatrixParser parser = new MatrixParser();
-
-        public Matrix(string input)
-        {
-            items = parser.Parse(input);
-            rows = items.Length;
-            columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
-        }
-
-        public int Rows => rows;
-
-
-        public int Cols => columns;
-
-        public int[] Row(int row)
-        {
-            return items[row - 1];
-        }
-
-        public int[] Column(int col)
-        {
-            int[] column = new int[rows];
-
-            for (int i = 0; i < rows; i++)
-                column[i] = items[i][col - 1];
-
-            return column;
-        }
+        return GetMins(matrix).Intersect(GetMaxs(matrix)).ToArray(); 
     }
 
-    internal class MatrixParser
+    private static HashSet<(int, int)> GetMaxs(int[,] matrix)
     {
-        readonly static char rowSeparator = '\n';
+        List<(int, int)> maxs = new List<(int, int)>();
 
-        readonly static char columnSeparator = ' ';
+        int rowSize = matrix.GetLength(0);
+        int columnSize = matrix.GetLength(1);
 
-        internal int[][] Parse(string input)
+        for (int i = 0; i < rowSize; i++)
         {
-            int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(i => int.Parse(i))
-                                        .ToArray())
-                        .ToArray();
+            int max = int.MinValue;
+            List<(int, int)> temp = new List<(int, int)>();
 
-            int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
-
-            if (!items.All(r => r.Length == columns))
-                throw new FormatException("It is not a matrix.");
-
-            return items;
+            for (int j = 0; j < columnSize; j++)
+            {
+                if(matrix[i,j] > max )
+                {
+                    max = matrix[i,j];
+                    temp.Clear();
+                    temp.Add((i + 1,j + 1));
+                }
+                else if(matrix[i,j] == max)
+                {
+                    temp.Add((i + 1,j + 1));
+                }      
+            }
+            maxs.AddRange(temp);
         }
 
-        internal int[] Parse1(string input)
-        {
-            int[][] items = input.Split(rowSeparator, StringSplitOptions.RemoveEmptyEntries)
-                        .Select(r => r.Split(columnSeparator, StringSplitOptions.RemoveEmptyEntries)
-                                        .Select(i => int.Parse(i))
-                                        .ToArray())
-                        .ToArray();
+        return new HashSet<(int, int)>(maxs);
 
-            int columns = (items.FirstOrDefault() ?? throw new Exception("The matrix is empty.")).Length;
-            int rows = items.Length;
-
-
-            if (!items.All(r => r.Length == columns))
-                throw new FormatException("It is not a matrix.");
-
-            int[] data = new int[columns * rows];
-
-            for (int i = 0; i < items.Length; i++)
-                items[i].CopyTo(data, i * columns);
-
-            return data;
-        }
     }
 
+    private static HashSet<(int, int)> GetMins(int[,] matrix)
+    {
+        List<(int, int)> mins = new List<(int, int)>();
+
+        int rowSize = matrix.GetLength(0);
+        int columnSize = matrix.GetLength(1);
+
+        for (int i = 0; i < columnSize; i++)
+        {
+            int min = int.MaxValue;
+            List<(int, int)> temp = new List<(int, int)>();
+
+            for (int j = 0; j < rowSize; j++)
+            {
+                if(matrix[j,i] < min )
+                {
+                    min = matrix[j,i];
+                    temp.Clear();
+                    temp.Add((j + 1,i + 1));
+                }
+                else if(matrix[j,i] == min)
+                {
+                    temp.Add((j + 1,i + 1
+                    ));
+                }      
+            }
+            mins.AddRange(temp);
+        }
+
+        return new HashSet<(int, int)>(mins);
+    }
+    }
 }
