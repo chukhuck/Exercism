@@ -1,8 +1,8 @@
 ﻿using System;
 
-public enum Direction
+public enum Direction : int
 {
-    North,
+    North = 0,
     East,
     South,
     West
@@ -10,36 +10,65 @@ public enum Direction
 
 public class RobotSimulator
 {
+    Direction direction;
+    int x;
+    int y;
     public RobotSimulator(Direction direction, int x, int y)
     {
+        this.direction = direction;
+        this.x = x;
+        this.y = y;
     }
 
-    public Direction Direction
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public Direction Direction => direction;
 
-    public int X
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public int X => x;
 
-    public int Y
-    {
-        get
-        {
-            throw new NotImplementedException("You need to implement this function.");
-        }
-    }
+    public int Y => y;
 
     public void Move(string instructions)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        foreach (var movement in instructions)
+            DoMovement(movement);
+    }
+
+    private void DoMovement(char movement)
+    {
+        switch (movement)
+        {
+            case 'R':
+                direction = (Direction)(((int)direction + 1) % 4);
+                break;
+            case 'L':
+                direction = (Direction)(((int)direction - 1) % 4);
+                direction = direction < 0 ? direction + 4 : direction;
+                break;
+            case 'A':
+                DoStep(direction);
+                break;
+            default:
+                throw new FormatException("Incorrect command.");
+        }
+    }
+
+    private void DoStep(Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.East:
+                x += 1;
+                break;
+            case Direction.West:
+                x -=1;
+                break;
+            case Direction.North:
+                y += 1;
+                break;
+            case Direction.South:
+                y -= 1;
+                break;
+            default:
+                throw new FormatException("Incorrect direction.");
+        }
     }
 }
