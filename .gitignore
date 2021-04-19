@@ -304,3 +304,5 @@ gradle/
 .ionide/symbolCache.db
 .ionide/symbolCache.db
 csharp/hello-world/obj/Debug/netcoreapp2.1/HelloWorld.assets.cache
+
+.ionide/
