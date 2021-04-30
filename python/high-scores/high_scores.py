@@ -5,7 +5,7 @@ def latest(scores: int):
 
 def personal_best(scores: int):
     """Get the best score"""
-    return sorted(scores, reverse=True)[0]
+    return max(scores)
 
 
 def personal_top_three(scores: list):
