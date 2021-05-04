@@ -6,6 +6,9 @@
 #bins
 *.cache
 
+#VS code folder
+.vscode/
+
 # User-specific files
 *.suo
 *.user
